@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -17,8 +18,8 @@ type Book struct {
 
 //Author Struct
 type Author struct {
-	Firstname string `json:"firstname`
-	Lastname  string `json:"lastname`
+	Firstname string `json:"firstname"`
+	Lastname  string `json:"lastname"`
 }
 
 //Get All Books
@@ -56,6 +57,8 @@ func main() {
 	r.HandleFunc("/api/books", createBook).Methods("POST")
 	r.HandleFunc("/api/books/{id}", updateBook).Methods("PUT")
 	r.HandleFunc("/api/books/{id}", deleteBook).Methods("DELETE")
+
+	fmt.Println("Server running on port :8000")
 
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
